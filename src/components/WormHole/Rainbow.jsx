@@ -9,11 +9,11 @@ import { shaderMaterial } from '@react-three/drei'
 const RainbowMaterial = shaderMaterial(
   {
     time: 0,
-    speed: 2,
+    speed: 3,
     fade: 0.5,
     startRadius: 6,
     endRadius: 0,
-    emissiveIntensity: 2.5,
+    emissiveIntensity: 1.5,
     ratio: 1
   },
   /*glsl*/ ` varying vec2 vUv;
@@ -82,7 +82,7 @@ const RainbowMaterial = shaderMaterial(
 
     void main() {
       const vec2 vstart = vec2(0.5, 0.5);
-      const vec2 vend = vec2(1.0, 0.5);
+      const vec2 vend = vec2(1.9, 0.5);
       vec2 dir = vstart - vend;
       float len = length(dir);
       float cosR = dir.y / len;
@@ -90,10 +90,10 @@ const RainbowMaterial = shaderMaterial(
       vec2 uv = (mat2(cosR, -sinR, sinR, cosR) * (vUv * vec2(ratio, 1.) - vec2(0., 1.) - vstart * vec2(1., -1.)) / len);
       float a = atan(uv.x, uv.y) * 10.0;
       float s = uv.y * (endRadius - startRadius) + startRadius;
-      float w = (uv.x / s + .5) * 300. + 400. + a;
+      float w = (uv.x / s + .5) * 250. + 400. + a;
       vec3 c = spectral_zucconi6(w, time); // [400, 700]
       float l = 1. - smoothstep(fade, 1., uv.y);
-      float area = uv.y < 0. ? 0. : 1.;
+      float area = uv.y < 0. ? 1. : 1.;
       float brightness = smoothstep(0., 0.5, c.x + c.y + c.z);
       vec3 co = c / iridescence(uv.x * 0.5 * 3.14159, 1.0 - uv.y + time / 10.0) / 20.0;      
       gl_FragColor = vec4(area * co * l * brightness * emissiveIntensity, 1.0);
@@ -107,10 +107,10 @@ export const Rainbow = forwardRef(({ startRadius = 0, endRadius = 0.5, emissiveI
   const material = useRef(null)
   const { width, height } = useThree((state) => state.viewport)
   // calculate the maximum length the rainbow has to have to reach all screen corners
-  const length = Math.hypot(width, height) + 100 // add 1.5 to due motion of the rainbow
+  const length = Math.hypot(width, height) + 50 // add 1.5 to due motion of the rainbow
   useFrame((state, delta) => (material.current.time += delta * material.current.speed))
   return (
-    <mesh ref={fRef} scale={[length, length, 1]} {...props}>
+    <mesh ref={fRef} scale={[40, 200, 0.1]} {...props}>
       <planeGeometry />
       <rainbowMaterial ref={material} key={RainbowMaterial.key} fade={fade} startRadius={startRadius} endRadius={endRadius} ratio={1} toneMapped={false} />
     </mesh>

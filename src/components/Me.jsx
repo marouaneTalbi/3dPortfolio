@@ -3,7 +3,7 @@ import { Canvas, useGraph } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
-const Me = ({ animationName = 'swim', ...props }) => {
+const Me = ({ animationName = 'fall', ...props }) => {
   const group = useRef()
   const { scene } = useGLTF('/models/me/me.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])

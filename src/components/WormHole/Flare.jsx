@@ -3,7 +3,7 @@ import { forwardRef, useRef } from 'react'
 import { useTexture, Instances, Instance } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
-export const Flare = forwardRef(({ streak = [8, 20, 1], visible, ...props }, fRef) => {
+export const Flare = forwardRef(({ streak = [1, 0, 0], visible, ...props }, fRef) => {
   const ref = useRef(null)
   const [streakTexture, dotTexture, glowTexture] = useTexture([
     '/textures/lensflare/lensflare2.png',
@@ -20,7 +20,7 @@ export const Flare = forwardRef(({ streak = [8, 20, 1], visible, ...props }, fRe
 
   useFrame((state) => {
     ref.current.children.forEach((instance) => {
-      instance.position.x = (Math[instance.scale.x > 1 ? 'sin' : 'cos']((state.clock.elapsedTime * instance.scale.x) / 2) * instance.scale.x) / 8
+      instance.position.x = (Math[instance.scale.x > 1 ? 'sin' : 'cos']((state.clock.elapsedTime * instance.scale.x) / 2) * instance.scale.x) / 9
       instance.position.y = (Math[instance.scale.x > 1 ? 'cos' : 'atan'](state.clock.elapsedTime * instance.scale.x) * instance.scale.x) / 5
     })
   })
@@ -38,7 +38,7 @@ export const Flare = forwardRef(({ streak = [8, 20, 1], visible, ...props }, fRe
           <Instance scale={2} position={[0, 0, -0.7]} />
         </group>
       </Instances>
-      <mesh scale={1}>
+      <mesh scale={4}>
         <planeGeometry />
         <meshBasicMaterial map={glowTexture} {...config} opacity={1} />
       </mesh>
