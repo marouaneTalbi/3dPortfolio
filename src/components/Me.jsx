@@ -3,7 +3,7 @@ import { Canvas, useGraph } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
-const Me = ({ animationName = 'stand', ...props }) => {
+const Me = ({ animationName = 'swim', ...props }) => {
   const group = useRef()
   const { scene } = useGLTF('/models/me/me.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
@@ -16,6 +16,8 @@ const Me = ({ animationName = 'stand', ...props }) => {
   const { animations: standingAnimation } = useFBX('/models/animations/Standing.fbx')
   const { animations: clappingAnimation } = useFBX('/models/animations/clapping.fbx')
   const { animations: victoryAnimation } = useFBX('/models/animations/victory.fbx')
+  const { animations: swimAnimation } = useFBX('/models/animations/swim.fbx')
+
 
     saluteAnimation[0].name = 'salute'
     standingAnimation[0].name = 'stand'
@@ -24,9 +26,10 @@ const Me = ({ animationName = 'stand', ...props }) => {
     idleAnimation[0].name = 'idle'
     clappingAnimation[0].name = 'clapping'
     victoryAnimation[0].name = 'victory'
+    swimAnimation[0].name = 'swim'
 
   const  {actions, }  = useAnimations(
-    [flyAnimation[0], saluteAnimation[0], idleAnimation[0], clappingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    [flyAnimation[0], swimAnimation[0], saluteAnimation[0], idleAnimation[0], clappingAnimation[0], standingAnimation[0], fallingAnimation[0]],
     group
   )
 

@@ -9,6 +9,8 @@ import { Leva } from "leva";
 import Pc from "../components/Pc";
 import PcCamera from "../components/PcCamera";
 import Me from "../components/Me";
+import Wormehole from "../components/WormHole/WormHole";
+import { Rainbow } from "../components/WormHole/Rainbow";
 
 
 const Welcom = () => {
@@ -26,6 +28,12 @@ const Welcom = () => {
                 </p>
                 <p className="hero_tag text-gray_gradient">Building Greate web applications</p>
             </div>
+                    {/* <Center top bottom position={[0, 2, 0]}>
+          <Text3D size={0.7} letterSpacing={-0.05} height={0.05} font="/fonts/Inter_Bold.json">
+            Dynamic without Limits
+            <meshStandardMaterial color="white" />
+          </Text3D>
+        </Center> */}
             <div className="w-full h-full absolute inset-0 ">
                 <Canvas className="w-full h-full mt-50 ">
                     <PerspectiveCamera makeDefault position={[0,0,10]}/>
@@ -37,14 +45,18 @@ const Welcom = () => {
                             <Pc scale={sizes.deskScale} position={sizes.deskPosition} rotation={[0, 4.9, 0]} />
                         </PcCamera> */}
                       
-                        <Galaxy scale={0.8}  position={[0,-90,-180]} rotation={[0, -Math.PI, 0]} /> 
+                        {/* <Galaxy scale={0.8}  position={[0,-90,-180]} rotation={[0, -Math.PI, 0]} />  */}
                         <OrbitControls enableZoom maxPolarAngle={Math.PI/2}  />
-                        <Me position-y={-3} scale={2.5} rotation={[1.5, -9.4, 53.5]}/>
+                        {/* <Me position-y={-3} scale={2.5} rotation={[3, -9.4, 53.5]}/> */}
+
+                        <Wormehole />
 
 
                     </Suspense>
 
                 </Canvas>
+
+
             </div>
         </section>
     )
