@@ -1,3 +1,4 @@
+import Projects from './components/Projects.jsx';
 import About from './sections/About.jsx';
 import Navbar from './sections/Navbar.jsx';
 import Welcom from './sections/Welcom.jsx';
@@ -8,6 +9,8 @@ const App = () => {
       <Navbar />
       <Welcom />
       <About />
+      <Projects />
+
 
     </main>
   );

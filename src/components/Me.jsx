@@ -3,7 +3,7 @@ import { Canvas, useGraph } from '@react-three/fiber'
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
-const Me = ({ animationName = 'fall', ...props }) => {
+const Me = ({ animationName = 'hadoukan', ...props }) => {
   const group = useRef()
   const { scene } = useGLTF('/models/me/me.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
@@ -17,19 +17,20 @@ const Me = ({ animationName = 'fall', ...props }) => {
   const { animations: clappingAnimation } = useFBX('/models/animations/clapping.fbx')
   const { animations: victoryAnimation } = useFBX('/models/animations/victory.fbx')
   const { animations: swimAnimation } = useFBX('/models/animations/swim.fbx')
-
-
-    saluteAnimation[0].name = 'salute'
-    standingAnimation[0].name = 'stand'
-    fallingAnimation[0].name = 'fall'
-    flyAnimation[0].name = 'fly'
-    idleAnimation[0].name = 'idle'
-    clappingAnimation[0].name = 'clapping'
-    victoryAnimation[0].name = 'victory'
-    swimAnimation[0].name = 'swim'
+  const { animations: hadoukanAnimation } = useFBX('/models/animations/u.fbx')
+  
+  saluteAnimation[0].name = 'salute'
+  standingAnimation[0].name = 'stand'
+  fallingAnimation[0].name = 'fall'
+  flyAnimation[0].name = 'fly'
+  idleAnimation[0].name = 'idle'
+  clappingAnimation[0].name = 'clapping'
+  victoryAnimation[0].name = 'victory'
+  swimAnimation[0].name = 'swim'
+  hadoukanAnimation[0].name = 'hadoukan'
 
   const  {actions, }  = useAnimations(
-    [flyAnimation[0], swimAnimation[0], saluteAnimation[0], idleAnimation[0], clappingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    [flyAnimation[0], swimAnimation[0], hadoukanAnimation[0], saluteAnimation[0], idleAnimation[0], clappingAnimation[0], standingAnimation[0], fallingAnimation[0]],
     group
   )
 

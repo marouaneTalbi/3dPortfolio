@@ -2,9 +2,12 @@ import * as THREE from 'three'
 import { forwardRef, useRef } from 'react'
 import { useTexture, Instances, Instance } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { useMediaQuery } from 'react-responsive'
 
-export const Flare = forwardRef(({ streak = [1, 0, 0], visible, ...props }, fRef) => {
-  const ref = useRef(null)
+export const Flare = forwardRef(({ streak = [1, 1, 0], visible, ...props }, fRef) => {
+  const ref = useRef(null);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const [streakTexture, dotTexture, glowTexture] = useTexture([
     '/textures/lensflare/lensflare2.png',
     '/textures/lensflare/lensflare3.png',
@@ -26,7 +29,7 @@ export const Flare = forwardRef(({ streak = [1, 0, 0], visible, ...props }, fRef
   })
 
   return (
-    <group ref={fRef} {...props} visible={visible} dispose={null}>
+    <group ref={fRef} {...props} visible={visible} dispose={null} position={isMobile ? [0,-2.,1] : [6,-1,1]}>
       <Instances frames={visible ? Infinity : 1}>
         <planeGeometry />
         <meshBasicMaterial map={dotTexture} {...config} />

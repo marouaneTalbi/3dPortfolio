@@ -1,20 +1,31 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useEffect, useRef } from 'react'
+import { useGLTF, useNormalTexture, useTexture } from '@react-three/drei'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 const Pc = (props) => {
+  const group = useRef();
   const { nodes, materials } = useGLTF('/models/gaming_desktop_pc.glb')
+  const txt = useTexture(props.texture ? props.texture : '/textures/projects/yomeva.png');
+
+  useEffect(() => {
+    if (txt) {
+      txt.flipY = false;
+    }
+  }, [txt]);
+
+  useGSAP(() => {
+    gsap.from(group.current.rotation, {
+      y: Math.PI / 2,
+      duration: 1,
+      ease: 'power3.out',
+    });
+  }, [txt]);
+
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} ref={group}>
       <group scale={0.01}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes['Object_782_OnTheFly-bg_0'].geometry}
-          material={materials['Material.074_40']}
-          position={[101.601, 40.622, 244.007]}
-          rotation={[-Math.PI / 2, 0.078, Math.PI / 2]}
-          scale={21.893}
-        />
+   
         <mesh
           castShadow
           receiveShadow
@@ -2548,6 +2559,7 @@ const Pc = (props) => {
           rotation={[1.572, -1.442, 1.567]}
           scale={113.034}
         />
+  
         <mesh
           castShadow
           receiveShadow
@@ -2556,7 +2568,9 @@ const Pc = (props) => {
           position={[-136.177, 300.132, 300.405]}
           rotation={[-Math.PI / 2, 1.501, Math.PI / 2]}
           scale={[331.621, 348.065, 331.621]}
-        />
+        >
+          <meshBasicMaterial map={txt} toneMapped={false} />
+        </mesh>
         <mesh
           castShadow
           receiveShadow
