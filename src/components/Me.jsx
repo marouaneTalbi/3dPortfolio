@@ -30,23 +30,14 @@ const Me = ({ animationName = 'hadoukan', ...props }) => {
   hadoukanAnimation[0].name = 'hadoukan'
 
   const  {actions, }  = useAnimations(
-    [flyAnimation[0], swimAnimation[0], hadoukanAnimation[0], saluteAnimation[0], idleAnimation[0], clappingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    [flyAnimation[0],victoryAnimation[0], swimAnimation[0], hadoukanAnimation[0], saluteAnimation[0], idleAnimation[0], clappingAnimation[0], standingAnimation[0], fallingAnimation[0]],
     group
   )
 
   useEffect(() => {
-
-
-    if (actions) {
-    actions[animationName].reset().fadeIn(0.5).play()
-
-    }
-    return () => {
-      if (actions) {
-        actions[animationName].fadeOut(0.5)
-      }
-    }
-  }, [animationName, actions])
+    actions[animationName].reset().fadeIn(0.1).play();
+    return () => actions[animationName].fadeOut(0.1);
+  }, [animationName]);
 
     return (
         <group {...props} dispose={null} ref={group}>

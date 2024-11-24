@@ -31,31 +31,21 @@ const Welcom = () => {
                     <PerspectiveCamera makeDefault position={[0,0,10]}/>
                     <ambientLight intensity={3} />
                     <directionalLight position={[10, 10, 10]} intensity={4.5} />
+                    <OrbitControls  /> 
                     <Suspense fallback={<Loader />}>
-                      
                         {/* <Galaxy scale={0.4}  position={[0,-100,-180]} rotation={[0, -Math.PI, 0]} />  */}
-                        {/* <OrbitControls enableZoom  /> */}
-                        {/* <OrbitControls enableZoom maxPolarAngle={Math.PI/2}  /> */}
-                        <Wormehole />
-                        {/* <Me position={[5.6,-3.5,1.6]} scale={1.6} rotation={[-5.4, 3.5, 1]} /> */}
-
-
+                        {/* <Wormehole />
                         <PcCamera isMobile={isMobile}>
                             {
                                 isMobile ?
                             <Me position={[-0.5,-3.7,1.5]} scale={1.1} rotation={[-5.4, 3.4, 1.]} />
                             :
                             <Me position={[5.6,-3.5,1.6]} scale={1.4} rotation={[-5.4, 3.5, 1]} />
-
-
                             }
-                            {/* <Me position={[5.6,-3.5,1.6]} scale={1.4} rotation={[-5.4, 3.5, 1]} /> */}
-                        </PcCamera>
+                        </PcCamera> */}
                     </Suspense>
-
                 </Canvas>
             </div>
-  
         </section>
     )
 }

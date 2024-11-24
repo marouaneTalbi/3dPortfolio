@@ -1,5 +1,11 @@
-import { useState } from 'react';
+import { Suspense,useState } from 'react';
 import Globe from 'react-globe.gl';
+import Me from '../components/Me';
+import { Canvas } from '@react-three/fiber';
+import Loader from '../components/Loader.jsx';
+import AnimatedMe from '../components/AimtedMe.jsx';
+import { OrbitControls } from '@react-three/drei';
+
 
 // import Button from '../components/Button.jsx';
 
@@ -19,8 +25,19 @@ const About = () => {
     <section className="c-space my-20" id="about">
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
         <div className="col-span-1 xl:row-span-3">
-          <div className="grid-container">
-            <img src="assets/avatar.jpeg" alt="grid-1" className="w-full sm:h-[276px] h-fit object-contain" />
+           <div className="grid-container">
+           <Canvas>
+              <ambientLight intensity={7} />
+              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+              <directionalLight position={[10, 10, 10]} intensity={1} />
+
+              <Suspense fallback={<Loader />}>
+              <OrbitControls  /> 
+
+                <Me position={[0,-5,0]} scale={6} rotation={[-2,0, 0.5]} animationName={"fall"} />
+                {/* <AnimatedMe /> */}
+              </Suspense>
+            </Canvas>
 
             <div>
               <p className="grid-headtext">Salut, Je m'apelle Marouane</p>
@@ -28,7 +45,10 @@ const About = () => {
               Avec 3 ans d'expérience, j'ai perfectionné mes compétences en développement frontend et backend, en créant des sites web dynamiques et réactifs.
               </p>
             </div>
-          </div>
+
+          </div> 
+
+
         </div>
 
         <div className="col-span-1 xl:row-span-3">
