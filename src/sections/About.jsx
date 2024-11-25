@@ -6,9 +6,6 @@ import Loader from '../components/Loader.jsx';
 import AnimatedMe from '../components/AimtedMe.jsx';
 import { OrbitControls } from '@react-three/drei';
 
-
-// import Button from '../components/Button.jsx';
-
 const About = () => {
   const [hasCopied, setHasCopied] = useState(false);
 
@@ -20,6 +17,12 @@ const About = () => {
       setHasCopied(false);
     }, 2000);
   };
+
+  const images = [
+    'symfony', 'react', 'vuedotjs', 'nextdotjs', 'nestjs', 'angular', 'amazonwebservices', 'tailwindcss', 'postgresql', 'javascript', 'docker', 'graphql', 'php', 'jest',
+    'css3', 'flutter', 'sass', 'jira', 'postman',
+    'git', 'gitlab','mongodb', 'mysql','github'
+  ]
 
   return (
     <section className="c-space my-20" id="about">
@@ -33,32 +36,28 @@ const About = () => {
 
               <Suspense fallback={<Loader />}>
               <OrbitControls  /> 
-
                 <Me position={[0,-5,0]} scale={6} rotation={[-2,0, 0.5]} animationName={"fall"} />
                 {/* <AnimatedMe /> */}
               </Suspense>
             </Canvas>
-
             <div>
               <p className="grid-headtext">Salut, Je m'apelle Marouane</p>
               <p className="grid-subtext">
               Avec 3 ans d'expérience, j'ai perfectionné mes compétences en développement frontend et backend, en créant des sites web dynamiques et réactifs.
               </p>
             </div>
-
           </div> 
-
-
         </div>
 
         <div className="col-span-1 xl:row-span-3">
           <div className="grid-container">
-            <img src="assets/grid2.png" alt="grid-2" className="w-full sm:h-[276px] h-fit object-contain" />
+            <img src="assets/e.jpg" alt="grid-2" className="w-full sm:h-[276px] h-fit object-contain rounded" />
+
 
             <div>
-              <p className="grid-headtext">Tech Stack</p>
+              <p className="grid-headtext">Ma Passion pour le code</p>
               <p className="grid-subtext">
-              Je me spécialise dans une variété de langages, frameworks et outils qui me permettent de développer des applications robustes et évolutives.
+              J'adore résoudre des problèmes et créer des choses à travers le code. La programmation n'est pas seulement ma profession, c'est ma passion. J'aime explorer de nouvelles technologies et améliorer constamment mes compétences.
               </p>
             </div>
           </div>
@@ -88,13 +87,23 @@ const About = () => {
         </div>
 
         <div className="xl:col-span-2 xl:row-span-3">
-          <div className="grid-container">
-            <img src="assets/grid3.png" alt="grid-3" className="w-full sm:h-[266px] h-fit object-contain" />
+          <div className="grid-container flex justify-between h-full ">
+
+            <div className="grid xl:grid-rows-3 grid-rows-6 grid-flow-col gap-4 flex justify-center w-full ">
+              {
+                images.map((img) => (
+                  <div className='col-span-2 xl:w-[120px]  w-[60px]  bg-white  rounded-full xl:p-4 p-2 animate-bounce'>
+                    <img src={`assets/technos/${img}.svg`} alt="grid-3" className='w-full'   />
+                  </div>
+
+                ))
+              }
+            </div>
 
             <div>
-              <p className="grid-headtext">Ma Passion pour le code</p>
+              <p className="grid-headtext">Tech Stack</p>
               <p className="grid-subtext">
-              J'adore résoudre des problèmes et créer des choses à travers le code. La programmation n'est pas seulement ma profession, c'est ma passion. J'aime explorer de nouvelles technologies et améliorer constamment mes compétences.
+              Je me spécialise dans une variété de langages, frameworks et outils qui me permettent de développer des applications robustes et évolutives.
               </p>
             </div>
           </div>
