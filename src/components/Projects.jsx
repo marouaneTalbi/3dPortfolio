@@ -8,16 +8,13 @@ import Loader from "../components/Loader";
 import Pc from './Pc.jsx';
 import { useMediaQuery } from 'react-responsive';
 
-
 const projectCount = myProjects.length;
 
 const Projects = () => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-
   const isSmall = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
-
   const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
   const handleNavigation = (direction) => {
@@ -38,7 +35,7 @@ const Projects = () => {
 
   return (
     <section className="c-space my-20">
-      <p className="head-text">My Selected Work</p>
+      <p className="head-text">Projets</p>
 
       <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
         <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
@@ -46,7 +43,7 @@ const Projects = () => {
             <img src={currentProject.spotlight} alt="spotlight" className="w-full h-96 object-cover rounded-xl" />
           </div>
 
-          <div className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg" style={currentProject.logoStyle}>
+          <div className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg bg-gray-100 bg-opacity-70" style={currentProject.logoStyle}>
             <img className="w-10 h-10 shadow-sm" src={currentProject.logo} alt="logo" />
           </div>
 
@@ -66,14 +63,14 @@ const Projects = () => {
               ))}
             </div>
 
-            <a
+            {/* <a
               className="flex items-center gap-2 cursor-pointer text-white-600"
               href={currentProject.href}
               target="_blank"
               rel="noreferrer">
               <p>Check Live Site</p>
               <img src="/assets/arrow-up.png" alt="arrow" className="w-3 h-3" />
-            </a>
+            </a> */}
           </div>
 
           <div className="flex justify-between items-center mt-7">
@@ -93,9 +90,7 @@ const Projects = () => {
             <directionalLight position={[10, 10, 5]} />
             <Center>
               <Suspense fallback={<Loader />}>
-                {/* <group scale={-80} position={[0, -100, -10]} rotation={[0, 10, 0]}> */}
                   <Pc texture={currentProject.texture} scale={sizes.deskScale} position={sizes.deskPosition} rotation={[0, 4.8, 0]} />
-                {/* </group> */}
               </Suspense>
             </Center>
             <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />

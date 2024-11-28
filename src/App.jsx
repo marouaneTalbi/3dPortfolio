@@ -7,11 +7,11 @@ import Welcom from './sections/Welcom.jsx';
 const App = () => {
   return (
     <main className="max-w-full mx-auto relative">
-      {/* <Navbar /> */}
-      {/* <Welcom /> */}
+      <Navbar />
+      <Welcom />
       <About />
-      {/* <Projects /> */}
-      {/* <WorkExperience /> */}
+      <Projects />
+      <WorkExperience />
 
 
     </main>
