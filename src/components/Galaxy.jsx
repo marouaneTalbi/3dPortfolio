@@ -8,7 +8,6 @@ const Galaxy = (props) => {
   const { nodes, materials } = useGLTF('/models/need_some_space.glb');
   const pointsRef = useRef(null);
 
-  // Rotation continue de la galaxie autour de son propre axe (axe Y)
   useFrame(() => {
     if (pointsRef.current) {
       pointsRef.current.rotation.y += 0.01; // Faire tourner la galaxie autour de son axe Y

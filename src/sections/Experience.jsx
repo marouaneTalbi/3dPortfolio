@@ -11,9 +11,9 @@ const WorkExperience = () => {
   const [animationName, setAnimationName] = useState('idle');
 
   return (
-    <section className="c-space my-20" id="work">
+    <section className="c-space   p-20" id="work">
       <div className="w-full text-white-600">
-        <p className="head-text">My Work Experience</p>
+        <p className="head-text">Experiences</p>
 
         <div className="work-container">
           <div className="work-canvas">
@@ -29,7 +29,7 @@ const WorkExperience = () => {
             </Canvas>
           </div>
 
-          <div className="work-content">
+          <div className="work-content shadow-2xl shadow-black-200 px-5 py-10 sm:p-10">
             <div className="sm:py-10 py-5 sm:px-5 px-2.5">
               {workExperiences.map((item, index) => (
                 <div

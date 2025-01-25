@@ -11,7 +11,7 @@ const App = () => {
       <Welcom />
       <About />
       <Projects />
-      <WorkExperience />
+     <WorkExperience />
 
 
     </main>
